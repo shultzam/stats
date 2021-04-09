@@ -15,18 +15,20 @@ TODO: DETAILS
 def tst_addAction():
     # Create some test data and call the addAction function.
     testData  = json.dumps({ 'action': 'jump', 'time': 100 })
-    addAction(testData)
-    # TODO: assert here
+    assert(addAction(testData) == True)
     
     # Repeat the above step with additional data.
     testData = json.dumps({ 'action': 'run', 'time': 75 })
-    addAction(testData)
-    # TODO: assert here
+    assert(addAction(testData) == True)
     
     # Repeat the above step with additional data.
     testData = json.dumps({ 'action': 'jump', 'time': 200 })
-    addAction(testData)
-    # TODO: assert here
+    assert(addAction(testData) == True)
+    
+    # Test addAction() against empty data and malformed data.
+    assert(addAction({}) == False)
+    assert(addAction(44) == False)
+    assert(addAction(True) == False)
     
     return
 
