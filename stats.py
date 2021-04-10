@@ -17,9 +17,10 @@ class Stats:
         self.actionDict = {}
         
     
-    ''' TODO: DESCRIPTION
+    ''' addAction
 
-    TODO: DETAILS
+    Adds an action to the action dictionary. Receives a JSON serialized string with action and time fields.
+    Returns True/False based on success/failure.
     '''
     def addAction(self, action: str) -> bool:
         # Deserialize the JSON into a string. In this case, loads() is mostly used to verify JSON format.
@@ -27,8 +28,8 @@ class Stats:
             actionJson = json.loads(action)
             actionName = actionJson['action']
             actionTime = actionJson['time']
-        except TypeError:
-            print('ERROR in addAction(): action ({}) cannot be processed.'.format(action))
+        except (TypeError, KeyError) as e:
+            print('ERROR in addAction(): action ({}) cannot be processed. Error: {}.'.format(action, e))
             return False
         
         # This check prevents a KeyError if this is the first of this action type received.
@@ -42,9 +43,9 @@ class Stats:
         return True
 
     
-    ''' TODO: DESCRIPTION
+    ''' getStats
 
-    TODO: DETAILS
+    Returns the average time for each given action as a JSON serialized string.
     '''
     def getStats(self) -> str:
         # Formulate the response.

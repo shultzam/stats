@@ -7,9 +7,14 @@ import json
 # Import the stats module from the adjacent src directory.
 from stats import Stats
 
-''' TODO: DESCRIPTION
+''' tst_addAction
 
-TODO: DETAILS
+Tests Stats::addAction. Tests included:
+  - Valid JSON data of multiple action types
+  - Empty data
+  - Invalid data types
+  - Invalid JSON data
+  - Missing fields from valid JSON data
 '''
 def tst_addAction():
     # Create class instance.
@@ -37,14 +42,18 @@ def tst_addAction():
     assert(statsObj.addAction({}) == False)
     assert(statsObj.addAction(44) == False)
     assert(statsObj.addAction(True) == False)
+    testData = json.dumps({ 'action': 'spin' })
+    assert(statsObj.addAction(testData) == False)
+    testData = json.dumps({ 'time': 12 })
+    assert(statsObj.addAction(testData) == False)
     
     print('tst_addAction() completed successfully.')
     return
 
 
-''' TODO: DESCRIPTION
+''' tst_getStats
     
-TODO: DETAILS
+Tests Stats::getStats by mostly just verifying the result getStats matches expectations.
 '''
 def tst_getStats():
     # Create class instance.
