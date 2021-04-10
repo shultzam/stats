@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # Created using Python 3.7.5
 
-# Standard Python3 imports.
+# Standard Python3 import(s).
 import json
 import sys
 
@@ -41,7 +41,26 @@ def tst_addAction():
 TODO: DETAILS
 '''
 def tst_getStats():
-    print('TEMP | entered tst_getStats()')
+    # Create class instance.
+    statsObj = Stats()
+    
+    # Create some test data and call the addAction function.
+    testData  = json.dumps({ 'action': 'jump', 'time': 100 })
+    statsObj.addAction(testData)
+    
+    # Repeat the above step with additional data.
+    testData = json.dumps({ 'action': 'run', 'time': 75 })
+    statsObj.addAction(testData)
+    
+    # Repeat the above step with additional data.
+    testData = json.dumps({ 'action': 'jump', 'time': 200 })
+    statsObj.addAction(testData)
+    
+    # Get the current data and verify it against expectations.
+    statsData = statsObj.getStats()
+    
+    # TODO: assertion(s)
+    
     return
 
 # Entry point.
