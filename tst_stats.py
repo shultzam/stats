@@ -6,7 +6,6 @@ import json
 import sys
 
 # Import the stats module from the adjacent src directory.
-sys.path.append('../src/')
 from stats import Stats
 
 ''' TODO: DESCRIPTION
