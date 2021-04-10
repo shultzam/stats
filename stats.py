@@ -11,8 +11,8 @@ class Stats:
         ''' actionDict, a standard Python3 dictionary.
             
             Used to maintain incoming data through concurrent calls. The data is stored as a list
-            containing [action count, total duration]. Total count represents the total count of 
-            that specific action given.
+            containing [action count, total duration] with key of action_name. Total count represents 
+            the total count of that specific action.
         '''
         self.actionDict = {}
         
@@ -22,19 +22,16 @@ class Stats:
     TODO: DETAILS
     '''
     def addAction(self, action: str) -> bool:
-        # Load the JSON into a string. In this case, loads() is really only used to verify JSON format.
+        # Deserialize the JSON into a string. In this case, loads() is mostly used to verify JSON format.
         try:
             actionJson = json.loads(action)
             actionName = actionJson['action']
             actionTime = actionJson['time']
-            #print('TEMP | in action getAction(), received action: {}'.format(actionJson))
         except TypeError:
             print('ERROR in addAction(): action ({}) cannot be processed.'.format(action))
             return False
         
-        # Save off the action's info for easier handling.
-        
-        # This check prevents a KeyError in the event this is the first of this action type received.
+        # This check prevents a KeyError if this is the first of this action type received.
         if actionName not in self.actionDict:
             self.actionDict[actionName] = [0, 0]
             
@@ -50,5 +47,12 @@ class Stats:
     TODO: DETAILS
     '''
     def getStats(self) -> str:
-        print('TEMP | entered tst_getStats()')
-        return 'Not yet implemented'
+        # Formulate the response.
+        responseList = []
+        for key in self.actionDict:
+            # Add this key's data to the response.
+            actionAverage = float(self.actionDict[key][1] / self.actionDict[key][0])
+            responseList.append({ 'action': key, 'time': actionAverage })
+        
+        # JSON serialize the response and return it.
+        return json.dumps(responseList)
