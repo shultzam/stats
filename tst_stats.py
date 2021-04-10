@@ -3,7 +3,6 @@
 
 # Standard Python3 import(s).
 import json
-import sys
 
 # Import the stats module from the adjacent src directory.
 from stats import Stats
