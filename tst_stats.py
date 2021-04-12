@@ -4,7 +4,7 @@
 # Standard Python3 import(s).
 import json
 
-# Import the stats module from the adjacent src directory.
+# Import the stats module.
 from stats import Stats
 
 ''' tst_addAction
