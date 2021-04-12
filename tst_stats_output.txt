@@ -1,0 +1,7 @@
+ERROR in addAction(): action ({}) cannot be processed. Error: the JSON object must be str, bytes or bytearray, not dict.
+ERROR in addAction(): action (44) cannot be processed. Error: the JSON object must be str, bytes or bytearray, not int.
+ERROR in addAction(): action (True) cannot be processed. Error: the JSON object must be str, bytes or bytearray, not bool.
+ERROR in addAction(): action ({"action": "spin"}) cannot be processed. Error: 'time'.
+ERROR in addAction(): action ({"time": 12}) cannot be processed. Error: 'action'.
+tst_addAction() completed successfully.
+tst_getStats() completed successfully.
